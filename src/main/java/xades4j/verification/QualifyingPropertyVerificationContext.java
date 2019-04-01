@@ -21,6 +21,7 @@ import java.security.cert.X509CRL;
 import java.security.cert.X509Certificate;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,15 +48,18 @@ public class QualifyingPropertyVerificationContext
     private final XMLSignature signature;
     private final CertificationChainData certChainData;
     private final SignedObjectsData signedObjectsData;
+    private final Date validationDate;
 
     QualifyingPropertyVerificationContext(
             XMLSignature signature,
             CertificationChainData certChainData,
-            SignedObjectsData signedObjectsData)
+            SignedObjectsData signedObjectsData,
+            Date validationDate)
     {
         this.signature = signature;
         this.certChainData = certChainData;
         this.signedObjectsData = signedObjectsData;
+        this.validationDate = validationDate;
     }
 
     public XMLSignature getSignature()
@@ -73,8 +77,12 @@ public class QualifyingPropertyVerificationContext
         return signedObjectsData;
     }
 
+    public Date getValidationDate() {
+        return validationDate;
+    }
+
     /**
-     * 
+     *
      */
     public static class CertificationChainData
     {

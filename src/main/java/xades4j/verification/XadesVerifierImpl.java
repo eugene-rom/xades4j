@@ -209,7 +209,8 @@ class XadesVerifierImpl implements XadesVerifier
                 /**/
                 new QualifyingPropertyVerificationContext.SignedObjectsData(
                 referencesRes.dataObjsReferences,
-                signature));
+                signature),
+                validationDate);
 
         // Verify the properties. Data structure verification is included.
         Collection<PropertyInfo> props = this.qualifyingPropertiesVerifier.verifyProperties(qualifPropsData, qPropsCtx);
@@ -229,7 +230,7 @@ class XadesVerifierImpl implements XadesVerifier
 
         return res;
     }
-    
+
     /*************************************************************************************/
 
     private Date getValidationDate(
@@ -259,7 +260,8 @@ class XadesVerifierImpl implements XadesVerifier
                 /**/
                 new QualifyingPropertyVerificationContext.SignedObjectsData(
                 new ArrayList<RawDataObjectDesc>(0),
-                signature));
+                signature),
+                verificationOptions.getDefaultVerificationDate());
         Collection<PropertyInfo> props = this.qualifyingPropertiesVerifier.verifyProperties(sigTsData, ctx);
         QualifyingProperty sigTs = props.iterator().next().getProperty();
 
